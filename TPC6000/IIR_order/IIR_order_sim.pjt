@@ -1,0 +1,29 @@
+; Code Composer Project File, Version 2.0 (do not modify or remove this line)
+
+[Project Settings]
+ProjectName="IIR_order_sim"
+ProjectDir="C:\TPC6000\IIR_order\"
+ProjectType=Executable
+CPUFamily=TMS320C67XX
+Tool="Compiler"
+Tool="CustomBuilder"
+Tool="Linker"
+Config="Debug"
+
+[Source Files]
+Source="bargraph.c"
+Source="IIR_filters_first_order.c"
+Source="IIR_filters_second_order.c"
+Source="IIR_filters_fourth_order.c"
+Source="iir_filters_second_order_asm.asm"
+Source="IIR_order.c"
+Source="stereo.c"
+Source="switches.c"
+Source="C6713dsk.cmd"
+Source="..\sim\sim_board.c"
+
+["Compiler" Settings: "Debug"]
+Options=-g -q -fr"$(Proj_dir)\DebugSim" -i"$(Proj_dir)\..\sim" -d"_DEBUG" -ml3 -mv6710
+
+["Linker" Settings: "Debug"]
+Options=-q -c -m".\DebugSim\IIR_order_sim.map" -o".\DebugSim\IIR_order_sim.out" -w -x -l"rts6700.lib"

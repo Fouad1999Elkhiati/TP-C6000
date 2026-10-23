@@ -1,0 +1,34 @@
+; Code Composer Project File, Version 2.0 (do not modify or remove this line)
+
+[Project Settings]
+ProjectName="FIR_windows"
+ProjectDir="C:\TPC6000\fir_windows\"
+ProjectType=Executable
+CPUFamily=TMS320C67XX
+Tool="Compiler"
+Tool="CustomBuilder"
+Tool="DspBiosBuilder"
+Tool="Linker"
+Config="Debug"
+Config="Release"
+
+[Source Files]
+Source="bargraph.c"
+Source="FIR_filters.c"
+Source="FIR_filters_asm.asm"
+Source="FIR_windows.c"
+Source="stereo.c"
+Source="switches.c"
+Source="C6713dsk.cmd"
+
+["Compiler" Settings: "Debug"]
+Options=-g -q -fr"$(Proj_dir)\Debug" -i"$(Install_dir)\C6000\dsk6713\include" -d"_DEBUG" -d"CHIP_6713" -ml3 -mv6710
+
+["Compiler" Settings: "Release"]
+Options=-q -o3 -fr"$(Proj_dir)\Release" -i"$(Install_dir)\C6000\dsk6713\include" -d"CHIP_6713" -ml3 -mv6710
+
+["Linker" Settings: "Debug"]
+Options=-q -c -m".\Debug\FIR_windows.map" -o".\Debug\FIR_windows.out" -w -x -i"$(Install_dir)\C6000\dsk6713\lib" -l"rts6700.lib" -l"dsk6713bsl.lib" -l"csl6713.lib"
+
+["Linker" Settings: "Release"]
+Options=-q -c -m".\Release\FIR_windows.map" -o".\Release\FIR_windows.out" -w -x -i"$(Install_dir)\C6000\dsk6713\lib" -l"rts6700.lib" -l"dsk6713bsl.lib" -l"csl6713.lib"

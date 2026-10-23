@@ -1,0 +1,36 @@
+; Code Composer Project File, Version 2.0 (do not modify or remove this line)
+
+[Project Settings]
+ProjectName="IIR_order"
+ProjectDir="C:\TPC6000\IIR_order\"
+ProjectType=Executable
+CPUFamily=TMS320C67XX
+Tool="Compiler"
+Tool="CustomBuilder"
+Tool="DspBiosBuilder"
+Tool="Linker"
+Config="Debug"
+Config="Release"
+
+[Source Files]
+Source="bargraph.c"
+Source="IIR_filters_first_order.c"
+Source="IIR_filters_second_order.c"
+Source="IIR_filters_fourth_order.c"
+Source="iir_filters_second_order_asm.asm"
+Source="IIR_order.c"
+Source="stereo.c"
+Source="switches.c"
+Source="C6713dsk.cmd"
+
+["Compiler" Settings: "Debug"]
+Options=-g -q -fr"$(Proj_dir)\Debug" -i"$(Install_dir)\C6000\dsk6713\include" -d"_DEBUG" -d"CHIP_6713" -ml3 -mv6710
+
+["Compiler" Settings: "Release"]
+Options=-q -o3 -fr"$(Proj_dir)\Release" -i"$(Install_dir)\C6000\dsk6713\include" -d"CHIP_6713" -ml3 -mv6710
+
+["Linker" Settings: "Debug"]
+Options=-q -c -m".\Debug\IIR_order.map" -o".\Debug\IIR_order.out" -w -x -i"$(Install_dir)\C6000\dsk6713\lib" -l"rts6700.lib" -l"dsk6713bsl.lib" -l"csl6713.lib"
+
+["Linker" Settings: "Release"]
+Options=-q -c -m".\Release\IIR_order.map" -o".\Release\IIR_order.out" -w -x -i"$(Install_dir)\C6000\dsk6713\lib" -l"rts6700.lib" -l"dsk6713bsl.lib" -l"csl6713.lib"
